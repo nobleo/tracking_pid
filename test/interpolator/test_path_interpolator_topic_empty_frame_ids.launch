@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <!-- Startup PID controller -->
+    <node name="interpolator" pkg="tracking_pid" type="path_interpolator" output="screen">
+        <param name="target_x_vel" value="0.5"/>
+        <param name="loop" value="-1"/>
+    </node>
+
+    <node pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 earth map 100" name="map_tfpub"/>
+
+    <node name="publish_path" pkg="rostopic" type="rostopic" args="pub --latch /path nav_msgs/Path --file=$(find tracking_pid)/trajectories/empty_frame_ids.yaml"/>
+
+    <node name="$(anon rviz)" pkg="rviz" type="rviz" args="-d $(find tracking_pid)/test/interpolator/interpolator.rviz" />
+</launch>

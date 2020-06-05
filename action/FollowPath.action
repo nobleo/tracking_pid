@@ -1,0 +1,7 @@
+#goal definition
+nav_msgs/Path path
+---
+#result definition
+---
+#feedback
+float32 progress

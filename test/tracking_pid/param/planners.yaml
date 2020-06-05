@@ -1,0 +1,7 @@
+planners:
+  - name: 'planner'
+    type: 'global_planner/GlobalPlanner'
+planner:
+  allow_unknown: true
+  default_tolerance: 0.0
+  visualize_potential: true
