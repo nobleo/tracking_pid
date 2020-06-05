@@ -31,8 +31,6 @@ Apache 2.0
 
 The tracking_pid package has been tested under [ROS] Melodic and Ubuntu 18.04.
 
-[![Build Status](https://bitbucket.org/nobleo/tracking_pid/branch/develop)](https://bitbucket.org/nobleo/tracking_pid/branch/develop)
-
 
 ## Installation
 
@@ -47,7 +45,7 @@ The tracking_pid package has been tested under [ROS] Melodic and Ubuntu 18.04.
 To build from source, clone the latest version from this repository into your catkin workspace and compile the package using
 
     cd catkin_workspace/src
-    git clone https://bitbucket.org/nobleo/tracking_pid.git
+    git clone https://github.com/nobleo/tracking_pid.git
     cd ../
     catkin_make
 
@@ -85,7 +83,7 @@ Both of these depend on:
 
 tracking_pid test_tracking_pid_local_planner_cpp.launch depends on:
 
-[full_coverage_path_planner](https://bitbucket.org/nobleo/full_coverage_path_planner/src/develop/) for CPP global planner
+[full_coverage_path_planner](https://github.com/nobleo/full_coverage_path_planner) for CPP global planner
 
 ## Configuring in RQT
 
@@ -266,7 +264,7 @@ Command the robot to stay as close to the target as possible given the tuneable 
 
 ## Bugs & Feature Requests
 
-Please report bugs and request features using the [Issue Tracker](https://bitbucket.org/nobleo/tracking_pid/).
+Please report bugs and request features using the [Issue Tracker](https://github.com/nobleo/tracking_pid/issues).
 
 [ROS]: http://www.ros.org
 [rviz]: http://wiki.ros.org/rviz
