@@ -127,8 +127,6 @@ Mobile_robot_simulator is used to integrate cmd_vel output into TF and odometry.
 
 Arguments:
 
-* **`navigation`**: move_base / move_base_flex. Default: `move_base_flex`
-* **`tracking_pid_mode`**: node / plugin. Default: `node`
 * **`map`**: path to a global costmap. Default: `$(find full_coverage_path_planner)/maps/basement.yaml)`
 * **`target_x_vel`**: target x velocity for use in interpolator. Default: `0.5`
 * **`target_x_acc`**: target x acceleration for use in interpolator. Default: `0.2`
