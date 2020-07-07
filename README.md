@@ -114,6 +114,17 @@ Coupling between angular and longitudinal control loops. Longitudinal effort is 
 * **`dead_zone_yaw_error_cal`** (float); Dead zone in yaw error for coupling between angular and longitudinal controllers
 * **`max_yaw_error_cal`** (float); Max yaw error for coupling between angular and longitudinal controllers
 
+The interpolator parameters are also available through (rqt_)dynamic_reconfigure. The main parameters are:
+
+* **`target_x_vel`** (float); The velocity with which the the goal is moved along the path
+
+* **`target_x_acc`** (float); Target x acceleration for use in interpolator
+
+* **`target_yaw_vel`** (float); The velocity with which the goal is moved along the path points with changing yaw
+
+* **`target_yaw_acc`** (float); Target yaw acceleration for use in interpolator
+
+
 Defaults are shown here
 
 ![RQT reconfigure Tracking PID](doc/figures/rqt_tracking_pid.png)
@@ -175,22 +186,10 @@ Moves a goal over a path at a given velocity
 * **`/trajectory_finished`** ([std_msgs/Bool])
     True is published once when the path is finished
 
-#### Parameters
+#### (Static) Parameters
 
 * **`rate`** (float, default: `50.0`)
     How often must the interpolated be calculated and published?
-
-* **`target_x_vel`** (float, default: `0.5`)
-    The velocity with which the the goal is moved along the path
-
-* **`target_x_acc`** (float, default: `0.2`)
-    Target x acceleration for use in interpolator
-
-* **`target_yaw_vel`** (float, default: `1.0`)
-    The velocity with which the goal is moved along the path points with changing yaw
-
-* **`target_yaw_acc`** (float, default: `0.2`)
-    Target yaw acceleration for use in interpolator
 
 * **`flip_for_axis`** (float, default: `None`)
     When enabled, the desired following distance between robot and control point (published on `/trajectory`)
@@ -248,7 +247,6 @@ Command the robot to stay as close to the target as possible given the tuneable 
 
 * **`track_base_link`** (bool, default: `false`);
     Should the path be tracked with the base_link? Path yaw data is needed
-
 
 * **`loop_rate`** (float, default: `20.0`);
     How often the update the controller
