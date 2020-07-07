@@ -69,7 +69,7 @@ Ros system test that checks that interpolator + controller drives a robot to tra
 
 Run the main node:
 
-    roslaunch tracking_pid test_tracking_pid.launch
+    roslaunch tracking_pid test_tracking_pid.test rviz:=true
 
 Or run the tracking node together with a Coverage Path Planner
 
@@ -149,16 +149,20 @@ Arguments:
 
 Start planning and tracking by giving a 2D nav goal.
 
-### test/test_path_interpolator.launch
+### test/test_path_interpolator_topic.launch
 
 Shows the the use of the path_interpolator. A path is published on /path and a target is moved along the path at a given velocity.
 Takes no arguments.
 If all is well, an orange sphere should move a back-and-forth path covering a square.
 
-### test/test_tracking_pid.launch
+### test/test_tracking_pid.test
 
-This launch-file extends test_path_interpolator.launch with the actual tracking_pid controller, wrapped in a node.
-No arguments.
+This launch-file extends test_path_interpolator_topic.launch with the actual tracking_pid controller, wrapped in a node.
+
+Arguments:
+
+* **`rviz`**: launch rviz as well?. Default: `false`
+
 If all is well, a red square moves along a toothed path that covers a square. The square should be followed by the base_link frame.
 
 ## Nodes
