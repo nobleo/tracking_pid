@@ -3,26 +3,28 @@
 <launch>
     <arg name="rviz" default="false"/>
 
-    <!-- Startup PID controller -->
+    <!-- Interpolator -->
     <node name="interpolator" pkg="tracking_pid" type="path_interpolator">
         <param name="target_x_vel" value="0.7"/>
-        <param name="target_x_acc" value="0.5"/>
+        <param name="target_x_acc" value="100.0"/>
     </node>
 
-    <node pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 earth map 100" name="map_tfpub"/>
-    <node pkg="tf" type="static_transform_publisher" args="1 0 0 0.7 0 0 map path_frame 100" name="path_frame_tfpub"/>
-
-    <node name="publish_path" pkg="rostopic" type="rostopic" args="pub --latch /path nav_msgs/Path --file=$(find tracking_pid)/trajectories/zigzag_short.yaml"/>
-
-    <node if="$(arg rviz)" name="$(anon rviz)" pkg="rviz" type="rviz" args="-d $(find tracking_pid)/test/tracking_pid/controller.rviz" />
-
+    <!-- PID controller -->
     <node name="controller" pkg="tracking_pid" type="controller" output="screen">
       <remap from="move_base/cmd_vel" to="/move_base/cmd_vel"/>
       <remap from="local_trajectory" to="trajectory"/>
       <param name="controller_debug_enabled" value="True"/>
+      <param name="l" value="0.5"/>
     </node>
-    <node name="publish_enable" pkg="rostopic" type="rostopic" args="pub --latch /enable_control std_msgs/Bool 'data: true'"/>
 
+    <!-- Test path -->
+    <node name="publish_path" pkg="rostopic" type="rostopic" args="pub --latch /path nav_msgs/Path --file=$(find tracking_pid)/trajectories/zigzag_short.yaml"/>
+    <node pkg="tf" type="static_transform_publisher" args=" 0 0 0 0 0 0 map path_frame 100" name="path_frame_tfpub"/>
+
+    <!-- Rviz -->
+    <node if="$(arg rviz)" name="$(anon rviz)" pkg="rviz" type="rviz" args="-d $(find tracking_pid)/test/tracking_pid/controller.rviz" />
+
+    <!-- Simulator -->
     <node pkg="mobile_robot_simulator" type="mobile_robot_simulator_node" name="fake_odometry" output="screen">
       <param name="publish_map_transform" value="true"/>
       <param name="publish_rate" value="10.0"/>
@@ -30,6 +32,7 @@
       <param name="odometry_topic" value="/odom"/>
     </node>
 
+    <!-- test script -->
     <test test-name="rostest_tracking_pid_node" pkg="tracking_pid" type="test_tracking_pid_system.py" />
 
 </launch>

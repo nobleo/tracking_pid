@@ -1,0 +1,109 @@
+header:
+  seq: 1
+  stamp:
+    secs: 0
+    nsecs:         0
+  frame_id: 'path_frame'
+poses:
+  -
+    header:
+      seq: 0
+      stamp:
+        secs: 0
+        nsecs:         0
+      frame_id: 'path_frame'
+    pose:
+      position:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+        w: 1.0
+  -
+    header:
+      seq: 1
+      stamp:
+        secs: 0
+        nsecs:         0
+      frame_id: 'path_frame'
+    pose:
+      position:
+        x: 5.0
+        y: 0.0
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+        w: 1.0
+  -
+    header:
+      seq: 2
+      stamp:
+        secs: 0
+        nsecs:         0
+      frame_id: 'path_frame'
+    pose:
+      position:
+        x: 5.0
+        y: 0.0
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: -0.707
+        w: 0.707
+  -
+    header:
+      seq: 3
+      stamp:
+        secs: 0
+        nsecs:         0
+      frame_id: 'path_frame'
+    pose:
+      position:
+        x: 5.0
+        y: -1.0
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: -0.707
+        w: 0.707
+  -
+    header:
+      seq: 4
+      stamp:
+        secs: 0
+        nsecs:         0
+      frame_id: 'path_frame'
+    pose:
+      position:
+        x: 5.0
+        y: -1.0
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: -1.0
+        w: 0.0
+  -
+    header:
+      seq: 5
+      stamp:
+        secs: 0
+        nsecs:         0
+      frame_id: 'path_frame'
+    pose:
+      position:
+        x: 0.0
+        y: -1.0
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: -1.0
+        w: 0.0
