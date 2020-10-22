@@ -29,14 +29,9 @@ class TestTrackingPID(unittest.TestCase):
         rospy.loginfo("Trajectory finished message received on topic")
         self.trajectory_finished = trajectory_finished_msg.data
 
-    def quaternion_to_yaw(self, quaternion_in):
-        quaternion = (
-            quaternion_in.x,
-            quaternion_in.y,
-            quaternion_in.z,
-            quaternion_in.w)
-        euler = tf.transformations.euler_from_quaternion(quaternion)
-        return (euler[2] + math.pi) % (2 * math.pi) - math.pi  # wrap
+    def quaternion_to_yaw(self, quat):
+        euler = tf.transformations.euler_from_quaternion((quat.x, quat.y, quat.z, quat.w))
+        return euler[2]
 
     def test_tracking_pid(self):
         """ Several checks are done:
