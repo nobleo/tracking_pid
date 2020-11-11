@@ -1,7 +1,0 @@
-<library path="lib/libtracking_pid">
-    <class name="tracking_pid/TrackingPidLocalPlanner" type="tracking_pid::TrackingPidLocalPlanner" base_class_type="nav_core::BaseLocalPlanner">
-        <description>
-            Local planner that tries to stay on the global path as well as it can, using multiple SISO PID controllers
-        </description>
-    </class>
-</library>
