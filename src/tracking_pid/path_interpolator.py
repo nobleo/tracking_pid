@@ -452,7 +452,7 @@ class InterpolatorNode(object):
             self.reconfigure_client = dynamic_reconfigure.client.Client("controller", timeout=1)
 
         self._path_poses = path_msg.poses
-        self._sections = zip(self._path_poses, self._path_poses[1:])
+        self._sections = list(zip(self._path_poses, self._path_poses[1:]))
 
         if not self._timer:
             self.start_path()
