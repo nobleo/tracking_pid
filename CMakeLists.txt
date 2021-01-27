@@ -110,12 +110,6 @@ install(
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 
-install(
-  FILES
-    ${PROJECT_NAME}_plugin.xml
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
-
 catkin_install_python(
   PROGRAMS
     nodes/path_interpolator
