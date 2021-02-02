@@ -43,7 +43,4 @@
   <test_depend>mobile_robot_simulator</test_depend>
   <test_depend>rosunit</test_depend>
 
-  <export>
-    <nav_core plugin="${prefix}/tracking_pid_plugin.xml"/>
-  </export>
 </package>
