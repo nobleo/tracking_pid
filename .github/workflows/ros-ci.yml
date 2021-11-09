@@ -17,11 +17,13 @@ jobs:
           - ROS_DISTRO: noetic
             ROS_REPO: main
             CMAKE_ARGS: -Wall
+            BUILDER: catkin_make
             CATKIN_LINT: true
 
           - ROS_DISTRO: noetic
             ROS_REPO: testing
             CMAKE_ARGS: -Wall
+            BUILDER: catkin_make
             CATKIN_LINT: true
 
     runs-on: ubuntu-latest

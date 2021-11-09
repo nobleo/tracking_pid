@@ -57,8 +57,8 @@ generate_messages(
 
 ## Declare a catkin package
 catkin_package(
-        INCLUDE_DIRS
-        include
+#        INCLUDE_DIRS
+#        include
         CATKIN_DEPENDS
         actionlib
         actionlib_msgs
@@ -84,7 +84,7 @@ catkin_package(
 #target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
 include_directories(
-        include
+#        include
         ${catkin_INCLUDE_DIRS}
 )
 
