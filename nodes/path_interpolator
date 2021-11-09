@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-"""Accept a ROS navmsgs/Path and publish traj_point to tracking_pid interpolated along the given Path"""
+"""Accept a ROS navmsgs/Path and publish traj_point to difftrack_mpc interpolated along the given Path"""
 
 import rospy
-from tracking_pid.path_interpolator import InterpolatorNode
+from difftrack_mpc.path_interpolator import InterpolatorNode
 
 
 if __name__ == "__main__":

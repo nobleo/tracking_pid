@@ -1,0 +1,24 @@
+name: lint
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+on:
+  - push
+  - pull_request
+
+jobs:
+  industrial_ci:
+    strategy:
+      matrix:
+        env:
+          - ROS_DISTRO: noetic
+            CLANG_FORMAT_CHECK: file
+            CLANG_FORMAT_VERSION: 11
+
+          - OS_CODE_NAME: focal
+            BLACK_CHECK: true
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: 'ros-industrial/industrial_ci@master'
+        env: ${{matrix.env}}

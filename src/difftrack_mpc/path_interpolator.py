@@ -1,14 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-"""Accept a ROS navmsgs/Path and publish traj_point to tracking_pid interpolated along the given Path"""
+"""Accept a ROS navmsgs/Path and publish traj_point to difftrack_mpc interpolated along the given Path"""
 
 from dynamic_reconfigure.server import Server
 from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path
 from std_msgs.msg import Bool
 from std_srvs.srv import SetBool
-from tracking_pid.cfg import TargetVelocityConfig
-from tracking_pid.msg import traj_point, FollowPathAction, FollowPathGoal, FollowPathResult, FollowPathFeedback
+from difftrack_mpc.cfg import TargetVelocityConfig
+from difftrack_mpc.msg import traj_point, FollowPathAction, FollowPathGoal, FollowPathResult, FollowPathFeedback
 from visualization_msgs.msg import Marker
 import actionlib
 import dynamic_reconfigure.client
@@ -559,7 +559,7 @@ class InterpolatorNode(object):
 
     def _set_controller_direction(self, sign):
         """
-        Flip the sign of the tracking_pid controller
+        Flip the sign of the difftrack_mpc controller
         :param sign: optional. If *not* given, the sign of the control distance is flipped. If given, the given sign is applied, regardless of the current sign
         """
 

@@ -1,0 +1,10 @@
+cmake-build-*
+.idea
+**/__pycache__
+
+.catkin_tools
+
+build
+devel
+install
+logs

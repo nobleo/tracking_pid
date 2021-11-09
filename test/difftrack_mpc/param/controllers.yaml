@@ -1,6 +1,6 @@
 controllers:
-  - name: 'tracking_pid'
-    type: 'tracking_pid/TrackingPidLocalPlanner'
+  - name: 'difftrack_mpc'
+    type: 'difftrack_mpc/TrackingPidLocalPlanner'
 
 controller:
   holonomic_robot: false

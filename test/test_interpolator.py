@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path
@@ -7,7 +7,7 @@ import rospy
 import tf
 import unittest
 
-from tracking_pid.path_interpolator import SectionInterpolation
+from difftrack_mpc.path_interpolator import SectionInterpolation
 
 
 class TestSectionInterpolator(unittest.TestCase):
@@ -215,7 +215,7 @@ class TestSectionInterpolator(unittest.TestCase):
         self.assertAlmostEqual(yaw, -1.5)
         self.assertAlmostEqual(tp.velocity.angular.z, -1.0)
 
-        # Decceleration phase x/theta = 1.5 + 1.0*t - 0.5*a*t^2, v/dtheta=1.0-a*t
+        # Deceleration phase x/theta = 1.5 + 1.0*t - 0.5*a*t^2, v/dtheta=1.0-a*t
         tp = current_section.interpolate_with_acceleration(rospy.Time(2.5))
         yaw = self.quaternion_to_yaw(tp.pose.pose.orientation)
         self.assertAlmostEqual(yaw, -1.875)

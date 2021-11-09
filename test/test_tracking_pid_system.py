@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-PKG='tracking_pid'
+PKG='difftrack_mpc'
 
 from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path
 from std_msgs.msg import Bool
-from tracking_pid.msg import traj_point, PidDebug
+from difftrack_mpc.msg import traj_point, PidDebug
 import math
 import numpy as np
 import rospy
