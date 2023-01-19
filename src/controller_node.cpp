@@ -147,6 +147,7 @@ void reconfigure_callback(const tracking_pid::PidConfig& config)
 {
   pid_controller.configure(config);
   controller_debug_enabled = config.controller_debug_enabled;
+  controller_timeout = config.controller_timeout;
 }
 
 int main(int argc, char** argv)
@@ -166,7 +167,6 @@ int main(int argc, char** argv)
   node_priv.param<bool>("enabled_on_boot", enabled_on_boot, true);
   controller_enabled = enabled_on_boot;
   waiting_for_setpoint = true;
-  node_priv.param<double>("controller_timeout", controller_timeout, 0.1);
 
   // instantiate publishers & subscribers
   control_effort_pub = node.advertise<geometry_msgs::Twist>("move_base/cmd_vel", 1);
