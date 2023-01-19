@@ -76,7 +76,13 @@ geometry_msgs::Twist Controller::update(const geometry_msgs::Transform current, 
   tf::transformMsgToTF(current, origin);
   tf::Transform error_ang_tf = origin.inverseTimes(newGoal);
   // Current error goes to slot 0
-  error_ang.at(0) = angles::normalize_angle(atan2(error_ang_tf.getOrigin().y(), error_ang_tf.getOrigin().x()));
+  double angle_error = atan2(error_ang_tf.getOrigin().y(), error_ang_tf.getOrigin().x());
+  if (l < 0)
+  {
+    angle_error += M_PI;
+    angle_error *= -1;
+  }
+  error_ang.at(0) = angles::normalize_angle(angle_error);
 
 
   // Populate debug output
