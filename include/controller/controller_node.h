@@ -60,6 +60,7 @@ double error_th = 0;
 // For timing
 ros::Time prev_time;
 ros::Duration delta_t;
+ros::Duration controller_timeout;
 
 // Controller output
 double control_effort_long = 0.0;  // output of pid controller

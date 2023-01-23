@@ -86,6 +86,11 @@ void trajectory_callback(const tracking_pid::traj_point& goalPointMsg)
 
 void poseCallback()
 {
+  if (waiting_for_setpoint)
+  {
+    ROS_DEBUG_THROTTLE(1.0, "Still waiting for a setpoint...");
+    return;
+  }
   try
   {
     tf_buffer.canTransform(base_link_frame, map_frame, ros::Time(0), ros::Duration(10.0));
@@ -113,24 +118,28 @@ void poseCallback()
     return;
   }
 
-  if (!waiting_for_setpoint)
+  if ((ros::Time::now() - goalPoint.pose.header.stamp) > controller_timeout)
   {
-    geometry_msgs::Twist cmd_vel;
-    tracking_pid::PidDebug pid_debug;
-    geometry_msgs::TransformStamped tfCurPoseStamped;
-    tfCurPoseStamped = tf_buffer.lookupTransform(map_frame, base_link_frame, ros::Time(0));
-    tfCurPose = tfCurPoseStamped.transform;
-    cmd_vel = pid_controller.update(tfCurPose, tfGoalPose, delta_t, &pid_debug);
+    ROS_INFO_STREAM_THROTTLE(1.0, "Timed out waiting for setpoint. Stopping control until new setpoint.");
+    waiting_for_setpoint = true;
+    return;
+  }
 
-    if (controller_enabled)
-    {
-      control_effort_pub.publish(cmd_vel);
-    }
+  geometry_msgs::Twist cmd_vel;
+  tracking_pid::PidDebug pid_debug;
+  geometry_msgs::TransformStamped tfCurPoseStamped;
+  tfCurPoseStamped = tf_buffer.lookupTransform(map_frame, base_link_frame, ros::Time(0));
+  tfCurPose = tfCurPoseStamped.transform;
+  cmd_vel = pid_controller.update(tfCurPose, tfGoalPose, delta_t, &pid_debug);
 
-    if (controller_debug_enabled)
-    {
-      debug_pub.publish(pid_debug);
-    }
+  if (controller_enabled)
+  {
+    control_effort_pub.publish(cmd_vel);
+  }
+
+  if (controller_debug_enabled)
+  {
+    debug_pub.publish(pid_debug);
   }
 }
 
@@ -138,6 +147,7 @@ void reconfigure_callback(const tracking_pid::PidConfig& config)
 {
   pid_controller.configure(config);
   controller_debug_enabled = config.controller_debug_enabled;
+  controller_timeout = ros::Duration(config.controller_timeout);
 }
 
 int main(int argc, char** argv)
