@@ -90,7 +90,7 @@ tracking_pid test_tracking_pid_local_planner_cpp.launch depends on:
 Tracking_pid parameters are all available through (rqt_)dynamic_reconfigure. The main parameters are:
 
 * **`l`** (float, default: `0.5`);
-    Following distance from robot's rotational point to trajectory.
+    Following distance from robot's rotational point to trajectory. Set negative to track backwards.
 
 Proportional, Integral and Derivative actions for the three loops: Longitudinal, lateral and angular loops.
 
