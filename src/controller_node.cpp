@@ -118,7 +118,7 @@ void poseCallback()
     return;
   }
 
-  if ((ros::Time::now() - goalPoint.pose.header.stamp).toSec() > controller_timeout)
+  if ((ros::Time::now() - goalPoint.pose.header.stamp) > controller_timeout)
   {
     ROS_INFO_STREAM_THROTTLE(1.0, "Timed out waiting for setpoint. Stopping control until new setpoint.");
     waiting_for_setpoint = true;
@@ -147,7 +147,7 @@ void reconfigure_callback(const tracking_pid::PidConfig& config)
 {
   pid_controller.configure(config);
   controller_debug_enabled = config.controller_debug_enabled;
-  controller_timeout = config.controller_timeout;
+  controller_timeout = ros::Duration(config.controller_timeout);
 }
 
 int main(int argc, char** argv)
